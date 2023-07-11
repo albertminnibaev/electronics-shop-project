@@ -2,7 +2,7 @@
 
 import pytest
 from src.phone import Phone
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 
 
 @pytest.fixture
@@ -59,3 +59,10 @@ def test___str__(item_test):
 
 def test___add__(item_test, phone_test):
     assert item_test + phone_test == 10
+
+
+def test_error():
+    with pytest.raises(FileNotFoundError):
+        Item.checking_file_items()
+    with pytest.raises(InstantiateCSVError):
+        Item.checking_file_items()
